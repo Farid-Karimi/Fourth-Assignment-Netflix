@@ -7,6 +7,7 @@ class NetflixService {
      *The NetflixService should have an Arraylist of users, tv shows and movies.
      *The NetflixService should have a User object which represents current user.
      */
+    ArrayList<TVShow> movieList
 
     public void addTVShow(TVShow tvShow){
         // Implement add tv show logic here

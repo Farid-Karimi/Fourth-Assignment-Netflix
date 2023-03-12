@@ -70,4 +70,7 @@ class TVShow{
     public ArrayList<String> getCastMember() {
         return castMember;
     }
+    public void addCastMember(String name){
+        castMember.add(name);
+    }
 }

@@ -3,7 +3,6 @@ package org.example;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
-import java.util.Scanner;
 
 class NetflixService {
     /*
@@ -41,8 +40,8 @@ class NetflixService {
         return currentUser;
     }
 
-    public void setCurrentUser(User currentUser) {
-        currentUser = currentUser;
+    public void setCurrentUser(User user) {
+        currentUser = user;
     }
 
 
@@ -54,9 +53,13 @@ class NetflixService {
         movieList.add(movie);
     }
 
-    public void createAccount(String username, String password) {
-        User user = new User(username , password);
-        userList.put(username , user);
+    public User createAccount(String username, String password) {
+        if(!userList.containsKey(username)) {
+            User user = new User(username , password);
+            userList.put(username , user);
+            return user;
+        }
+        return null;
     }
 
     public boolean login(String username, String password) {
@@ -70,22 +73,45 @@ class NetflixService {
     }
 
     public void logout() {
-        // Implement logout logic here
+        currentUser = null;
     }
 
-    public ArrayList<TVShow> searchByTitle(String title) {
-        // Implement search by title logic here
+    public ArrayList<TVShow> searchByTitle(String title){
+        ArrayList<TVShow> list = new ArrayList<>();
+        for(TVShow show : tvShowList){
+            if(title.contains(show.getTitle())){
+                list.add(show);
+            }
+        }
+        return list;
+    }
+    public TVShow searchForTitle(String title){
+        for(TVShow show : tvShowList){
+            if(title.equals(show.getTitle())){
+                return show;
+            }
+        }
         return null;
     }
 
-    public ArrayList<TVShow> searchByGenre(String genre) {
-        // Implement search by genre logic here
-        return null;
+    public ArrayList<TVShow> searchByGenre(String genre){
+        ArrayList<TVShow> list = new ArrayList<>();
+        for(TVShow show : tvShowList){
+            if(genre.contains(show.getGenre())){
+                list.add(show);
+            }
+        }
+        return list;
     }
 
     public ArrayList<TVShow> searchByReleaseYear(int year) {
-        // Implement search by release year logic here
-        return null;
+        ArrayList<TVShow> list = new ArrayList<>();
+        for(TVShow show : tvShowList){
+            if(show.getReleaseYear() == year){
+                list.add(show);
+            }
+        }
+        return list;
     }
 
 

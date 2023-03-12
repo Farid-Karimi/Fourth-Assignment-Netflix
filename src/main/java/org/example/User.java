@@ -27,6 +27,14 @@ class User {
         this.username = username;
     }
 
+    public ArrayList<TVShow> getFavouriteShows(){
+        return favouriteShows;
+    }
+
+    public void setFavouriteShows(ArrayList<TVShow> favouriteShows) {
+        this.favouriteShows = favouriteShows;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -69,16 +77,16 @@ class User {
         System.out.print("Your Favourite Shows Are:");
         System.out.println(favouriteShows);
     }
-    public ArrayList<TVShow> getRecommendations() {
+    public ArrayList<TVShow> getRecommendations(NetflixService netflix) {
         ArrayList<TVShow> recommendations = new ArrayList<>();
-        for (TVShow tvShow : ) {
-            // Check if the TV show has not been watched by the user
+        for (TVShow tvShow : netflix.getTvShowList()) {
+            //Check if the TV show has not been already watched
             if (!favouriteShows.contains(tvShow)) {
-                // Check if the TV show has the same genre as the last watched TV show by the user
+                //Check if the TV show has the same genre as the last watched TV show by the user
                 if (favouriteShows.size() > 0 && tvShow.getGenre().equals(favouriteShows.get(favouriteShows.size() - 1).getGenre())) {
                     recommendations.add(tvShow);
                 }
-                // Check if the TV show has a high rating
+                //Check if the TV show has a high rating
                 else if (tvShow.getRating() > 8.0) {
                     recommendations.add(tvShow);
                 }

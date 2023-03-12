@@ -5,7 +5,7 @@ import java.util.ArrayList;
 class Movie extends TVShow {
     private int lengthMinute;
 
-    public Movie(String title, String genre, String releaseYear, int durationMinute, double rating, ArrayList<String> castMember, int lengthMinute) {
+    public Movie(String title, String genre, int releaseYear, int durationMinute, double rating, ArrayList<String> castMember, int lengthMinute) {
         super(title, genre, releaseYear, durationMinute, rating, castMember);
         this.lengthMinute = lengthMinute;
     }

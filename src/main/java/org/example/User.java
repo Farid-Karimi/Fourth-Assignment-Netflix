@@ -71,7 +71,7 @@ class User {
     }
     public ArrayList<TVShow> getRecommendations() {
         ArrayList<TVShow> recommendations = new ArrayList<>();
-        for (TVShow tvShow : NetflixService.getTvShows()) {
+        for (TVShow tvShow : ) {
             // Check if the TV show has not been watched by the user
             if (!favouriteShows.contains(tvShow)) {
                 // Check if the TV show has the same genre as the last watched TV show by the user

@@ -47,7 +47,7 @@ In this assignment, I created a simulation of Netflix. The program allows users 
 
 ## UML Diagram
 
-![Fourth-Assignment-Netflix](E:\homework\N4-P\Fourth-Assignment-Netflix.png)
+![Fourth-Assignment-Netflix](https://user-images.githubusercontent.com/118434072/224955287-a2ec7fbe-3620-4810-bbc9-b5114af28173.png)
 
 ---
 

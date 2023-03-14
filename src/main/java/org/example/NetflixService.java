@@ -5,20 +5,17 @@ import java.util.HashMap;
 import java.util.Objects;
 
 class NetflixService {
-    /*
-     *The NetflixService should have an Arraylist of users, tv shows and movies.
-     *The NetflixService should have a User object which represents current user.
-     */
+
     private ArrayList<Movie> movieList;
     private ArrayList<TVShow> tvShowList;
     private HashMap<String,User> userList;
     private User currentUser;
 
-    public NetflixService(User user) {
+    public NetflixService() {
         this.movieList = new ArrayList<>();
         this.tvShowList = new ArrayList<>();
         this.userList = new HashMap<>();
-        this.currentUser = user;
+        this.currentUser = null;
     }
 
     public ArrayList<Movie> getMovieList() {
@@ -79,7 +76,12 @@ class NetflixService {
     public ArrayList<TVShow> searchByTitle(String title){
         ArrayList<TVShow> list = new ArrayList<>();
         for(TVShow show : tvShowList){
-            if(title.contains(show.getTitle())){
+            if(show.getTitle().contains(title)){
+                list.add(show);
+            }
+        }
+        for(TVShow show : movieList){
+            if(show.getTitle().contains(title)){
                 list.add(show);
             }
         }
@@ -91,22 +93,35 @@ class NetflixService {
                 return show;
             }
         }
+        for(TVShow show : movieList){
+            if(title.equals(show.getTitle())){
+                return show;
+            }
+        }
         return null;
     }
-
     public ArrayList<TVShow> searchByGenre(String genre){
         ArrayList<TVShow> list = new ArrayList<>();
         for(TVShow show : tvShowList){
-            if(genre.contains(show.getGenre())){
+            if(show.getGenre().contains(genre)){
+                list.add(show);
+            }
+        }
+        for(TVShow show : movieList){
+            if(show.getGenre().contains(genre)){
                 list.add(show);
             }
         }
         return list;
     }
-
     public ArrayList<TVShow> searchByReleaseYear(int year) {
         ArrayList<TVShow> list = new ArrayList<>();
         for(TVShow show : tvShowList){
+            if(show.getReleaseYear() == year){
+                list.add(show);
+            }
+        }
+        for(TVShow show : movieList){
             if(show.getReleaseYear() == year){
                 list.add(show);
             }

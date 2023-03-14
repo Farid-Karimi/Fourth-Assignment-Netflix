@@ -2,12 +2,7 @@ package org.example;
 
 import java.util.ArrayList;
 
-/*
- * The user should contain username password.
- * The user should contain an ArrayList of favorite shows and watch history.
- * FUNCTION: the user should have a function to watch a show and add it to watch history.
- *  *** NOTE: All search functions in user are for searching in favorite shows ***
- */
+
 class User {
     private String username;
     private String password;
@@ -46,16 +41,17 @@ class User {
     public ArrayList<TVShow> searchByTitle(String title){
         ArrayList<TVShow> list = new ArrayList<>();
         for(TVShow show : favouriteShows){
-            if(title.contains(show.getTitle())){
+            if(show.getTitle().contains(title)){
                 list.add(show);
             }
         }
+
         return list;
     }
     public ArrayList<TVShow> searchByGenre(String genre){
         ArrayList<TVShow> list = new ArrayList<>();
         for(TVShow show : favouriteShows){
-            if(genre.contains(show.getGenre())){
+            if(show.getGenre().contains(genre)){
                 list.add(show);
             }
         }
@@ -73,17 +69,13 @@ class User {
     public void addToFavorites(TVShow show) {
         favouriteShows.add(show);
     }
-    public void viewFavorites() {
-        System.out.print("Your Favourite Shows Are:");
-        System.out.println(favouriteShows);
-    }
     public ArrayList<TVShow> getRecommendations(NetflixService netflix) {
         ArrayList<TVShow> recommendations = new ArrayList<>();
         for (TVShow tvShow : netflix.getTvShowList()) {
             //Check if the TV show has not been already watched
             if (!favouriteShows.contains(tvShow)) {
                 //Check if the TV show has the same genre as the last watched TV show by the user
-                if (favouriteShows.size() > 0 && tvShow.getGenre().equals(favouriteShows.get(favouriteShows.size() - 1).getGenre())) {
+                if (favouriteShows.size() > 0 && (tvShow.getGenre().contains(favouriteShows.get(favouriteShows.size() - 1).getGenre()) || favouriteShows.get(favouriteShows.size() - 1).getGenre().contains(tvShow.getGenre()))) {
                     recommendations.add(tvShow);
                 }
                 //Check if the TV show has a high rating
@@ -93,5 +85,6 @@ class User {
             }
         }
         return recommendations;
+        
     }
 }

@@ -3,11 +3,21 @@ package org.example;
 import java.util.ArrayList;
 
 class Movie extends TVShow {
-    /*
-     *Movie is extended from TVShow and has extra attribute length.
-     */
-    public Movie()
-    {
-        super();
+    private int lengthMinute;
+
+    public Movie(String title, String genre, int releaseYear, int durationMinute, double rating, ArrayList<String> castMember, int lengthMinute) {
+        super(title, genre, releaseYear, durationMinute, rating, castMember);
+        this.lengthMinute = lengthMinute;
     }
+
+    public int getLengthMinute() {
+        return lengthMinute;
+    }
+
+    public void setLengthMinute(int lengthMinute) {
+        this.lengthMinute = lengthMinute;
+    }
+
 }
+
+
